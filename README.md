@@ -1,1 +1,27 @@
-1. Giới thiệu tổng quan (Introduction)Bắt đầu bằng mục tiêu của dự án. Thay vì chỉ nói "đây là bài tập sắp xếp", hãy nâng tầm nó lên:Mục tiêu: Đánh giá hiệu năng thực tế của các thuật toán sắp xếp kinh điển ($QuickSort$, $HeapSort$, $MergeSort$) so với thư viện tối ưu hóa numpy.sort.Điểm nhấn: Thử nghiệm trên dữ liệu lớn (Big Data - 10 triệu phần tử) với các kịch bản dữ liệu khác nhau (đã sắp xếp, ngược chiều, ngẫu nhiên) để quan sát sự thay đổi về độ phức tạp thời gian thực tế.2. Đặc điểm bộ dữ liệu (Dataset Specifications)Mô tả ngắn gọn về "nguyên liệu" bạn đã dùng để test:Quy mô: 10 dãy số, mỗi dãy $10^6$ phần tử.Định dạng: 5 dãy số thực (float), 5 dãy số nguyên (int).Trạng thái dữ liệu:Best case: Dãy đã sắp xếp tăng dần.Worst case: Dãy sắp xếp giảm dần.Average case: 8 dãy ngẫu nhiên hoàn toàn.
+
+
+
+---
+
+## 1. Giới thiệu tổng quan (Introduction)
+
+Trong lý thuyết khoa học máy tính, các thuật toán sắp xếp như **QuickSort**, **MergeSort** hay **HeapSort** đều có độ phức tạp lý thuyết trung bình là $O(n \log n)$. Tuy nhiên, hiệu năng thực tế phụ thuộc rất lớn vào cách quản lý bộ nhớ, cách chọn pivot và đặc điểm của dữ liệu đầu vào.
+
+
+
+### Mục tiêu dự án
+* **Đánh giá hiệu năng thực tế:** So sánh thời gian thực thi của 3 thuật toán kinh điển so với `numpy.sort`và 'cpp_sort' (được tối ưu hóa bằng C-API).
+* **Phân tích hành vi thuật toán:** Quan sát sự thay đổi về tốc độ khi dữ liệu thay đổi từ trạng thái "lý tưởng" sang "ngẫu nhiên" hoặc "ngược chiều".
+* **Thử nghiệm quy mô lớn:** Chạy thực nghiệm trên tổng cộng **10 triệu phần tử**, vượt qua giới hạn của các bài toán quy mô nhỏ thông thường để thấy rõ sự khác biệt về hằng số thời gian.
+
+---
+
+## 2. Đặc điểm bộ dữ liệu (Dataset Specifications)
+
+Để đảm bảo tính khách quan và bao quát, bộ dữ liệu thử nghiệm được thiết kế với tổng quy mô 10 triệu phần tử, chia thành các kịch bản khác nhau để "thử thách" từng thuật toán.
+
+### Quy mô và Định dạng
+* **Số lượng:** 12 dãy số độc lập.
+* **Kích thước:** $10^6$ (1 triệu) phần tử mỗi dãy.
+* **Kiểu dữ liệu (Data Types):** * **06 dãy số thực (float):** Kiểm tra khả năng xử lý dấu phẩy động.(1 tăng dần - 1 giảm dần - 4 random)
+  * **06 dãy số nguyên (int):** Kiểm tra hiệu năng tính toán số nguyên thuần túy (1 tăng dần - 1 giảm dần - 4 random)
